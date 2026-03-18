@@ -2,9 +2,15 @@ provider "aws" {
   region = var.region
 }
 
+resource "random_id" "suffix" {
+  byte_length = 4
+}
+
 resource "aws_s3_bucket" "terraform_state" {
   count  = length(var.bucket_name)
-  bucket = var.bucket_name[count.index]
+  
+  # Append random suffix to each bucket to ensure uniqueness
+  bucket = "${var.bucket_name[count.index]}-${random_id.suffix.hex}"
 }
 
 resource "aws_s3_bucket_versioning" "s3_versioning" {
