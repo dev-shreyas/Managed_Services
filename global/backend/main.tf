@@ -11,6 +11,10 @@ resource "aws_s3_bucket" "terraform_state" {
   
   # Append random suffix to each bucket to ensure uniqueness
   bucket = "${var.bucket_name[count.index]}-${random_id.suffix.hex}"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "aws_s3_bucket_versioning" "s3_versioning" {
