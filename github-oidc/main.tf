@@ -28,7 +28,7 @@ resource "aws_iam_role" "github_terraform_role" {
           "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
         }
         StringLike = {
-          "token.actions.githubusercontent.com:sub" = "repo:dev-shreyas/Tier3-WebApp-Infrastructure:*"
+          "token.actions.githubusercontent.com:sub" = "repo:dev-shreyas/Work-Enterprise-Infrastructure:*"
         }
       }
     }]
